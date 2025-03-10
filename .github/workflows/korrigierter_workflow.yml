@@ -1,0 +1,24 @@
+name: Simple Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run Command
+        run: echo "Hello, World!"
+
+      - name: Create File
+        run: touch newfile.txt
+        if: ${{ success() }} # falscher command / klammern für Bedingung/Funktion fehlten
+
+      - name: Print Message
+        run: echo "The workflow completed successfully."
