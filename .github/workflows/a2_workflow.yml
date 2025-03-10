@@ -14,6 +14,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       
-      - name: Bedingter Schritt
-        if: ${{ env.MEINE_VARIABLE }}
-        run: echo "Dieser Schritt wird nur ausgeführt, wenn MEINE_VARIABLE gesetzt ist."
+      - name: Set Environment Variable
+        run: echo "MEINE_VARIABLE=true" >> $GITHUB_ENV
+
+      - name: Conditional Step
+        if: ${{ env.MEINE_VARIABLE == 'true' }}
+        run: echo "Dieser Schritt wird nur ausgeführt, wenn MEINE_VARIABLE gesetzt und true ist."
