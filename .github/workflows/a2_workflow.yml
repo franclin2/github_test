@@ -1,0 +1,19 @@
+name: Mein erster Workflow
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Bedingter Schritt
+        if: ${{ env.MEINE_VARIABLE }}
+        run: echo "Dieser Schritt wird nur ausgeführt, wenn MEINE_VARIABLE gesetzt ist."
